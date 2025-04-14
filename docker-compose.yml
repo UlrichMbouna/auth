@@ -1,0 +1,45 @@
+version: '3.8'  # Nécessaire pour les conditions de dépendance
+services:
+  app:
+    build: .
+    container_name: spring-app
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://sql5.freesqldatabase.com:3306/sql5772748?allowPublicKeyRetrieval=true&useSSL=false&connectTimeout=10000
+      SPRING_DATASOURCE_USERNAME: sql5772748
+      SPRING_DATASOURCE_PASSWORD: F9AV7k64Ms
+      SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT: 10000 # Augmentez le timeout
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: EWanf5snyk
+      MYSQL_DATABASE: sql5772120
+      MYSQL_USER: sql5772120
+      MYSQL_PASSWORD: EWanf5snyk
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+    networks:
+      - app-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql_data:

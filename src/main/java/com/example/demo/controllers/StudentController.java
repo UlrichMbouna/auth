@@ -19,15 +19,19 @@ public class StudentController {
     @Autowired
     private Studentservice studentservice;
 
-    // @PostMapping("/student")
-    // public Student cree (@RequestBody Student student){
-    //     return studentservice.saveStudent(student);   
-    // }
+    @PostMapping("/student")
+    public Student cree (@RequestBody Student student){
+
+        return studentservice.saveStudent(student);   
+    }
     @GetMapping("/student")
     public List<Student> liste(){
         return studentservice.listStudent();
     }
-
+    @GetMapping("/api/hello")
+    public String sayHello() {
+        return "Hello, ";
+    }
     // @PostMapping("/login")
     // public String login(@RequestParam String email, @RequestParam String mdp) {
     //     return studentService.authenticateStudent(email, mdp); // Renvoyer le token JWT

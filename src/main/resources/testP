@@ -1,0 +1,22 @@
+# spring.application.name=demo
+# # URL de connexion à la base de données MySQL
+# spring.datasource.url=jdbc:mysql://localhost:3306/newdb
+
+# # Nom d'utilisateur et mot de passe MySQL
+# spring.datasource.username=root
+# spring.datasource.password=newpassword123
+
+# # Driver MySQL
+# spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# # Configuration de JPA/Hibernate
+# spring.jpa.hibernate.ddl-auto=update
+# spring.jpa.show-sql=true
+# spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+# # HikariCP Configuration (optionnel)
+# spring.datasource.hikari.minimum-idle=5
+# spring.datasource.hikari.maximum-pool-size=10
+# spring.datasource.hikari.idle-timeout=30000
+# spring.datasource.hikari.max-lifetime=1800000
+# spring.datasource.hikari.connection-timeout=20000

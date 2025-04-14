@@ -26,19 +26,19 @@ public class Studentservice  {
 
     
 
-    public ResponseEntity<?> cree(Student student) {
-        Optional<Student> optionalStudent = studentRepository.findByEmail(student.getEmail());
+    // public ResponseEntity<?> cree(Student student) {
+    //     Optional<Student> optionalStudent = studentRepository.findByEmail(student.getEmail());
     
-        return optionalStudent.isPresent()
-            ? ResponseEntity.status(HttpStatus.CONFLICT).body("L'étudiant existe déjà !")
-            : ResponseEntity.status(HttpStatus.CREATED).body(
-                new StudentDto(studentRepository.save(student).getId(), student.getEmail(),student.getMdp())
-        );
-    }
-    // public Student saveStudent(Student student) {
-    //     student.setMdp(passwordEncoder.encode(student.getMdp()));
-    //     return studentRepository.save(student);
+    //     return optionalStudent.isPresent()
+    //         ? ResponseEntity.status(HttpStatus.CONFLICT).body("L'étudiant existe déjà !")
+    //         : ResponseEntity.status(HttpStatus.CREATED).body(
+    //             new StudentDto(studentRepository.save(student).getId(), student.getEmail(),student.getMdp())
+    //     );
     // }
+    public Student saveStudent(Student student) {
+        // student.setMdp(passwordEncoder.encode(student.getMdp()));
+        return studentRepository.save(student);
+    }
 
     public List<Student> listStudent() {
         return studentRepository.findAll();
